@@ -9,9 +9,6 @@ class ModePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("LedControl"),
-      ),
       body: SafeArea(
         child: Center(
           child: IntrinsicWidth(
@@ -37,24 +34,28 @@ class ModePage extends StatelessWidget {
                     },
                     child: Text("Custom color"),
                   ),
+                  Padding(padding: const EdgeInsets.only(bottom: 8)),
                   ElevatedButton(
                     onPressed: () {
                       Utils.openSite("rainbow");
                     },
                     child: Text("Rainbow"),
                   ),
+                  Padding(padding: const EdgeInsets.only(bottom: 8)),
                   ElevatedButton(
                     onPressed: () {
                       Utils.openSite("twinkle");
                     },
                     child: Text("Twinkle"),
                   ),
+                  Padding(padding: const EdgeInsets.only(bottom: 8)),
                   ElevatedButton(
                     onPressed: () {
                       Utils.openSite("cycle");
                     },
                     child: Text("Cycle"),
                   ),
+                  Padding(padding: const EdgeInsets.only(bottom: 8)),
                   ElevatedButton(
                     onPressed: () {
                       Utils.openSite("off");

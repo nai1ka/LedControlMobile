@@ -56,8 +56,8 @@ class _MainPageState extends State<MainPage> {
       },
       items: const [
         BottomNavigationBarItem(
-            icon: Icon(Icons.wb_incandescent), label: "Режим"),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Настройки"),
+            icon: Icon(Icons.wb_incandescent), label: "Mode"),
+        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
       ],
     );
   }

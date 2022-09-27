@@ -12,9 +12,16 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   double brightness = 0;
   double animationSpeed = 0;
+  String serverIP = "";
   @override
   void initState() {
     super.initState();
+
+    Utils.getServerIP().then((String serverIPFromSP) => (
+      setState((){
+        serverIP = serverIPFromSP;
+      })
+    ));
     getBrightness();
     getAnimationSpeed();
   }
@@ -29,6 +36,28 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Text("Server IP",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      initialValue: serverIP,
+                      onChanged: (String newID) {
+                        serverIP = newID;
+                      },
+                      style: TextStyle(fontSize: 24),
+                    ),
+
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        saveServerIP(serverIP);
+                      },
+                      child: Text("Save"))
+                ],
+              ),
+              const Padding(padding: EdgeInsets.only(bottom: 20)),
               const Text("Brightness",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               Row(
@@ -93,6 +122,8 @@ class _SettingsPageState extends State<SettingsPage> {
     });
   }
 
+
+
   void getAnimationSpeed() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -104,6 +135,11 @@ class _SettingsPageState extends State<SettingsPage> {
 void saveBrightness(double brightness) async {
   final prefs = await SharedPreferences.getInstance();
   prefs.setDouble("brightness", brightness);
+}
+void saveServerIP(String serverID) async {
+  print(serverID);
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setString("serverIP", serverID);
 }
 
 void saveAnimationSpeed(double animationSpeed) async {
